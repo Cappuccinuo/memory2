@@ -1,8 +1,8 @@
-run_erl [27344] Sat Feb 10 20:55:59 2018
+run_erl [30402] Sat Feb 10 22:00:53 2018
 Args before exec of shell:
-run_erl [27344] Sat Feb 10 20:55:59 2018
+run_erl [30402] Sat Feb 10 22:00:53 2018
 argv[0] = sh
-run_erl [27344] Sat Feb 10 20:55:59 2018
+run_erl [30402] Sat Feb 10 22:00:53 2018
 argv[1] = -c
-run_erl [27344] Sat Feb 10 20:55:59 2018
+run_erl [30402] Sat Feb 10 22:00:53 2018
 argv[2] = exec "/home/memory2/src/memory2/_build/prod/rel/memory2/bin/memory2" "console" --  

@@ -8,5 +8,11 @@ defmodule Memory do
   """
   def start(_type, _args) do
     import Supervisor.Spec
+
+    children = [
+      supervisor(Memory.Repo, []),
+      supervisor(Memory.Endpoint, [])
+      #worker(Memory.BackupChannel.Monitor, [%{}])
+    ]
   end
 end
