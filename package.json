@@ -1,0 +1,26 @@
+{
+  "name": "memory",
+  "version": "1.0.0",
+  "description": "## Development Instructions",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cappuccinuo/memory.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cappuccinuo/memory/issues"
+  },
+  "homepage": "https://github.com/Cappuccinuo/memory#readme",
+  "dependencies": {
+    "node-gyp": "^3.6.2"
+  }
+}

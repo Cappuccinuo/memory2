@@ -1,0 +1,23 @@
+#### Generated - edit/create /home/memory2/src/memory2/_build/prod/rel/memory2/vm.args instead.
+## Name of the node
+-name memory2@127.0.0.1
+
+## Cookie for distributed erlang
+-setcookie vc{$oLa6>|;&p1,HoGv`yxY!~Aw;K<&pu0HxAj*x}UjA2[!9Wo(M4KdS}FQW26B&
+
+## Heartbeat management; auto-restarts VM if it dies or becomes unresponsive
+## (Disabled by default..use with caution!)
+##-heart
+
+## Enable kernel poll and a few async threads
+##+K true
+##+A 5
+
+## Increase number of concurrent ports/sockets
+##-env ERL_MAX_PORTS 4096
+
+## Tweak GC to run more often
+##-env ERL_FULLSWEEP_AFTER 10
+
+# Enable SMP automatically based on availability
+-smp auto

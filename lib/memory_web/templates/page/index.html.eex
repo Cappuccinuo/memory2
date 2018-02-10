@@ -1,0 +1,32 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<h1>Join a Memory Game</h1>
+
+
+<div class="container">
+  <p class="h4">
+    Please input your name:
+  </p>
+  <input type="text" id="user-name" onkeyup="change()"/>
+  <button type="button" class="btn btn-link">
+    <a href="/game/demo" id="join">
+      <span class="h4">
+        Join
+      </span>
+    </a>
+  </button>
+  <script type="text/javascript">
+      $(document).keypress(function(event) {
+        if (event.keyCode == 13) {
+          window.location=document.getElementById('join').href;
+        }
+      });
+  </script>
+  <script>
+    function change() {
+      let y = $('#user-name').val();
+      $('#join').attr('href', "/game/" + String(y));
+    }
+  </script>
+</div>
