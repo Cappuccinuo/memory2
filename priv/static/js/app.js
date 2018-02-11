@@ -41244,66 +41244,51 @@ function run_demo(root, channel) {
   _reactDom2.default.render(_react2.default.createElement(MemoryGame, { channel: channel }), root);
 }
 
-var Square = function (_React$Component) {
-  _inherits(Square, _React$Component);
+function Square(props) {
+  var toggleVisible = props.isTurned ? 'visible' : props.isMatch ? 'visible' : 'hidden';
+  var changeColor = props.isMatch ? '#C4C9CF' : 'white';
+  var style = {
+    visibility: toggleVisible
+  };
+  var wholeStyle = {
+    background: changeColor
+  };
+  return _react2.default.createElement(
+    'button',
+    { className: 'square', style: wholeStyle, onClick: props.onClick },
+    _react2.default.createElement(
+      'div',
+      { style: style },
+      _react2.default.createElement(
+        'div',
+        null,
+        props.value
+      )
+    )
+  );
+}
 
-  function Square() {
-    _classCallCheck(this, Square);
-
-    return _possibleConstructorReturn(this, (Square.__proto__ || Object.getPrototypeOf(Square)).apply(this, arguments));
-  }
-
-  _createClass(Square, [{
-    key: 'render',
-    value: function render() {
-      var toggleVisible = this.props.isTurned ? 'visible' : this.props.isMatch ? 'visible' : 'hidden';
-      var changeColor = this.props.isMatch ? '#C4C9CF' : 'white';
-      var style = {
-        visibility: toggleVisible
-      };
-      var wholeStyle = {
-        background: changeColor
-      };
-      return _react2.default.createElement(
-        'button',
-        { className: 'square', style: wholeStyle, onClick: this.props.onClick },
-        _react2.default.createElement(
-          'div',
-          { style: style },
-          _react2.default.createElement(
-            'div',
-            null,
-            this.props.value
-          )
-        )
-      );
-    }
-  }]);
-
-  return Square;
-}(_react2.default.Component);
-
-var MemoryGame = function (_React$Component2) {
-  _inherits(MemoryGame, _React$Component2);
+var MemoryGame = function (_React$Component) {
+  _inherits(MemoryGame, _React$Component);
 
   function MemoryGame(props) {
     _classCallCheck(this, MemoryGame);
 
-    var _this2 = _possibleConstructorReturn(this, (MemoryGame.__proto__ || Object.getPrototypeOf(MemoryGame)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (MemoryGame.__proto__ || Object.getPrototypeOf(MemoryGame)).call(this, props));
 
-    _this2.resetTime = null;
-    _this2.state = {
+    _this.resetTime = null;
+    _this.state = {
       show: [], // The selected indices of cards
       completed: [], // The paired indices of cards
       skel: [], // Cards value based on indices,
       // "?" If not selected or pairs, otherwise show the value
       step: 0 // The click times so far
     };
-    _this2.channel = props.channel;
-    _this2.channel.join().receive("ok", _this2.gotView.bind(_this2)).receive("error", function (resp) {
+    _this.channel = props.channel;
+    _this.channel.join().receive("ok", _this.gotView.bind(_this)).receive("error", function (resp) {
       console.log("Unable to join", resp);
     });
-    return _this2;
+    return _this;
   }
 
   _createClass(MemoryGame, [{
@@ -41315,7 +41300,7 @@ var MemoryGame = function (_React$Component2) {
   }, {
     key: 'sendGuess',
     value: function sendGuess(i) {
-      var _this3 = this;
+      var _this2 = this;
 
       if (!this.state.completed.includes(i) && !this.state.show.includes(i)) {
         this.channel.push("guess", { "card": i }).receive("ok", this.gotView.bind(this));
@@ -41324,7 +41309,7 @@ var MemoryGame = function (_React$Component2) {
         }
         if (this.state.show.length >= 1) {
           this.resetTime = setTimeout(function () {
-            _this3.sendReset();
+            _this2.sendReset();
           }, 500);
         }
       }
@@ -41343,7 +41328,7 @@ var MemoryGame = function (_React$Component2) {
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       return _react2.default.createElement(
         'div',
@@ -41354,7 +41339,7 @@ var MemoryGame = function (_React$Component2) {
           _react2.default.createElement(
             'button',
             { className: 'button', onClick: function onClick() {
-                return _this4.sendRestart();
+                return _this3.sendRestart();
               } },
             'Restart'
           )
@@ -41376,10 +41361,10 @@ var MemoryGame = function (_React$Component2) {
             return _react2.default.createElement(Square, {
               value: card,
               onClick: function onClick() {
-                return _this4.sendGuess(i);
+                return _this3.sendGuess(i);
               },
-              isTurned: _this4.state.show.includes(i),
-              isMatch: _this4.state.completed.includes(i),
+              isTurned: _this3.state.show.includes(i),
+              isMatch: _this3.state.completed.includes(i),
               key: i });
           }, this)
         )

@@ -8,10 +8,9 @@ export default function run_demo(root, channel) {
   ReactDOM.render(<MemoryGame channel={channel}/>, root);
 }
 
-class Square extends React.Component {
-  render() {
-    const toggleVisible = this.props.isTurned ? 'visible' : this.props.isMatch ? 'visible' : 'hidden';
-    const changeColor = this.props.isMatch ? '#C4C9CF' : 'white';
+function Square(props) {
+    const toggleVisible = props.isTurned ? 'visible' : props.isMatch ? 'visible' : 'hidden';
+    const changeColor = props.isMatch ? '#C4C9CF' : 'white';
     let style = {
       visibility: toggleVisible,
     };
@@ -19,13 +18,12 @@ class Square extends React.Component {
       background: changeColor,
     }
     return (
-      <button className="square" style={wholeStyle} onClick={this.props.onClick}>
+      <button className="square" style={wholeStyle} onClick={props.onClick}>
         <div style={style}>
-          <div>{this.props.value}</div>
+          <div>{props.value}</div>
         </div>
       </button>
     );
-  }
 }
 
 class MemoryGame extends React.Component {
